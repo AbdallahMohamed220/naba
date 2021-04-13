@@ -7,13 +7,14 @@ import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 import 'package:naba/theme/color.dart';
 import 'package:naba/ui/screens/login/login.dart';
 import 'package:naba/ui/widgets/app_drawer/app_drawer.dart';
+import 'package:naba/ui/widgets/appbar/appbar.dart';
 
-class ProductDerails extends StatefulWidget {
+class BookDetails extends StatefulWidget {
   @override
-  _ProductDerailsState createState() => _ProductDerailsState();
+  _BookDetailsState createState() => _BookDetailsState();
 }
 
-class _ProductDerailsState extends State<ProductDerails> {
+class _BookDetailsState extends State<BookDetails> {
   final List<String> sliderImages = [
     'assets/images/slider_img1.png',
     'assets/images/slider_img2.png',
@@ -37,66 +38,11 @@ class _ProductDerailsState extends State<ProductDerails> {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              height: 110,
-              child: Stack(
-                children: [
-                  Material(
-                    elevation: 2,
-                    child: Container(
-                      width: deviceWidth,
-                      height: 70,
-                      color: Color(0xff0B7D6E),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.menu,
-                            ),
-                            color: AppColor.kAccentColor,
-                            onPressed: () {
-                              _scaffoldkey.currentState.openDrawer();
-                            },
-                          ),
-                          IconButton(
-                            color: AppColor.kAccentColor,
-                            icon: Icon(Icons.close),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: 5,
-                    top: 0,
-                    child: Container(
-                      width: 110,
-                      height: 110,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0xffB8B8B8),
-                            blurRadius: 0.6,
-                          ),
-                        ],
-                      ),
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        height: 110.0,
-                        width: 120.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            AppBarWidget(
+              isHomescreen: false,
+              onDrawerIconTap: () {
+                _scaffoldkey.currentState.openDrawer();
+              },
             ),
             SizedBox(
               height: 15,
@@ -161,7 +107,7 @@ class _ProductDerailsState extends State<ProductDerails> {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   Container(
                     height: 50,
@@ -228,7 +174,7 @@ class _ProductDerailsState extends State<ProductDerails> {
                         primary: AppColor.kPrimaryColor,
                         minimumSize: Size(
                           deviceWidth * 0.5,
-                          70,
+                          60,
                         ),
                       ),
                     ),

@@ -3,6 +3,7 @@ import 'package:naba/theme/color.dart';
 import 'package:naba/ui/screens/login/login.dart';
 import 'package:naba/ui/screens/prepare/prepare.dart';
 import 'package:naba/ui/widgets/app_drawer/app_drawer.dart';
+import 'package:naba/ui/widgets/appbar/appbar.dart';
 
 class SectionsScreen extends StatefulWidget {
   @override
@@ -19,66 +20,11 @@ class _SectionsScreenState extends State<SectionsScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              height: 110,
-              child: Stack(
-                children: [
-                  Material(
-                    elevation: 2,
-                    child: Container(
-                      width: deviceWidth,
-                      height: 70,
-                      color: Color(0xff0B7D6E),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.menu,
-                            ),
-                            color: AppColor.kAccentColor,
-                            onPressed: () {
-                              _scaffoldkey.currentState.openDrawer();
-                            },
-                          ),
-                          IconButton(
-                            color: AppColor.kAccentColor,
-                            icon: Icon(Icons.close),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: 5,
-                    top: 0,
-                    child: Container(
-                      width: 110,
-                      height: 110,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0xffB8B8B8),
-                            blurRadius: 0.6,
-                          ),
-                        ],
-                      ),
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        height: 110.0,
-                        width: 120.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            AppBarWidget(
+              isHomescreen: false,
+              onDrawerIconTap: () {
+                _scaffoldkey.currentState.openDrawer();
+              },
             ),
             SizedBox(
               height: 15,

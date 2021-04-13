@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:naba/theme/color.dart';
 import 'package:naba/ui/screens/login/login.dart';
+import 'package:naba/ui/widgets/button_action/button_action.dart';
+import 'package:naba/ui/widgets/custome_text_fied/custome_text_field.dart';
+import 'package:naba/ui/widgets/header/header.dart';
+import 'package:naba/ui/widgets/logo/logo.dart';
+import 'package:naba/ui/widgets/validator/validator.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController name = new TextEditingController();
+  TextEditingController email = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  TextEditingController confirmPassword = new TextEditingController();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,117 +26,61 @@ class RegisterScreen extends StatelessWidget {
         width: deviceWidth,
         height: deviceHeight,
         color: AppColor.kAccentColor,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 60,
-              ),
-              Center(
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(100),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xffB8B8B8),
-                        blurRadius: 0.6,
-                      ),
-                    ],
-                  ),
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    height: 150.0,
-                    width: 150.0,
-                    fit: BoxFit.cover,
-                  ),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 60,
                 ),
-              ),
-              SizedBox(
-                height: 100,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 15.0, bottom: 6),
-                child: Text(
-                  'التسجيل',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                  ),
+                LogoWidget(),
+                SizedBox(
+                  height: 100,
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                child: TextFormField(
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                    hintText: 'الاسم',
-                    hintStyle: TextStyle(),
-                  ),
+                HeaderWidget(
+                  label: 'التسجيل',
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                child: TextFormField(
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                    hintText: 'البريد الالكترونى',
-                    hintStyle: TextStyle(),
-                  ),
+                CustomeTextField(
+                  controller: name,
+                  validator: Validator.notEmpty,
+                  hintTxt: 'الاسم',
+                  obscureTextbool: false,
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                child: TextFormField(
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                    hintText: 'كلمة المرور',
-                    hintStyle: TextStyle(),
-                  ),
+                CustomeTextField(
+                  controller: email,
+                  validator: Validator.notEmpty,
+                  hintTxt: 'البريد الالكترونى',
+                  obscureTextbool: false,
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                child: TextFormField(
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                    hintText: 'تأكيد كلمة المرور',
-                  ),
+                CustomeTextField(
+                  controller: email,
+                  validator: Validator.notEmpty,
+                  hintTxt: 'كلمة المرور',
+                  obscureTextbool: false,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: ElevatedButton(
+                CustomeTextField(
+                  controller: email,
+                  validator: Validator.notEmpty,
+                  hintTxt: 'تأكيد كلمة المرور',
+                  obscureTextbool: false,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ButtonActiion(
                   onPressed: () {},
-                  child: Text(
-                    'التسجيل',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: AppColor.kPrimaryColor,
-                    minimumSize: Size(
-                      deviceWidth * 0.8,
-                      40,
-                    ),
-                  ),
+                  label: 'التسجيل',
+                  butttonWidth: deviceWidth * 0.8,
+                  buttonHeight: 40,
                 ),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-            ],
+                SizedBox(
+                  height: 50,
+                ),
+              ],
+            ),
           ),
         ),
       ),
