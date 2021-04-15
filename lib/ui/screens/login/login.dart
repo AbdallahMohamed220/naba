@@ -8,6 +8,7 @@ import 'package:naba/ui/screens/last_one/last_one.dart';
 import 'package:naba/ui/screens/last_two/last_two.dart';
 import 'package:naba/ui/screens/last_three/last_three.dart';
 import 'package:naba/ui/screens/main_menu/main_menu.dart';
+import 'package:naba/ui/screens/subjects/subjects.dart';
 import 'package:naba/ui/widgets/button_action/button_action.dart';
 import 'package:naba/ui/widgets/custome_text_fied/custome_text_field.dart';
 import 'package:naba/ui/widgets/header/header.dart';
@@ -46,8 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
     // if (_formKey.currentState.validate()) {
     //   await  AccountService.login(email: email.text, password : password.text);
 
-    //   Navigator.pushNamed(context, '/init_data');
-    // }
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MainMenuScreen()),
+      );    // }
 
     // setState(() {
     //   isLoading = false;

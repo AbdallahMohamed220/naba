@@ -33,7 +33,7 @@ class _PrepareScreenState extends State<PrepareScreen> {
             SizedBox(
               height: 15,
             ),
-            HeaderWidget(label: 'تحضير'),
+            HeaderWidget(label: 'بوربوينت بصوت'),
             Expanded(
               child: GridView.builder(
                 itemCount: 6,

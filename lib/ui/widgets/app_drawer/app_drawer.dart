@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naba/ui/screens/teacher/teacher.dart';
+import 'package:naba/ui/screens/subjects/subjects.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -33,8 +33,25 @@ class AppDrawer extends StatelessWidget {
               ),
               Divider(),
               DrawerItem(
+                label: 'الكتب',
+                onTap: () {
+                   Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => SubjectsScreen(type: "books",),
+                    ),
+                  );
+                },
+              ),
+              Divider(),              
+              DrawerItem(
                 label: 'نور الطالب والطالبة',
-                onTap: () {},
+                onTap: () {
+                   Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => SubjectsScreen(type: "noor_student",),
+                    ),
+                  );
+                },
               ),
               Divider(),
               DrawerItem(
@@ -42,7 +59,7 @@ class AppDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) => TeacherScreen(),
+                      builder: (_) => SubjectsScreen(type: "noor_teacher",),
                     ),
                   );
                 },

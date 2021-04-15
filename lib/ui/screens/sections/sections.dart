@@ -6,6 +6,10 @@ import 'package:naba/ui/widgets/app_drawer/app_drawer.dart';
 import 'package:naba/ui/widgets/appbar/appbar.dart';
 
 class SectionsScreen extends StatefulWidget {
+  String sections;
+  
+  SectionsScreen({this.sections});
+
   @override
   _SectionsScreenState createState() => _SectionsScreenState();
 }
@@ -47,20 +51,54 @@ class _SectionsScreenState extends State<SectionsScreen> {
                   SizedBox(
                     height: 8,
                   ),
-                  SectionItem(
-                    label: 'تحضير',
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => PrepareScreen()),
-                      );
-                    },
-                  ),
-                  SectionItem(
-                    label: 'بوربوينت',
-                  ),
-                  SectionItem(
-                    label: 'أوراق عمل',
-                  ),
+
+                  // SectionItem(
+                  //   label: 'تحضير',
+                  //   onTap: () {
+                  //     Navigator.of(context).push(
+                  //       MaterialPageRoute(builder: (_) => PrepareScreen()),
+                  //     );
+                  //   },
+                  // ),
+
+                  ... widget.sections.split("|").map((section) => InkWell(
+                      onTap: (){
+
+                      if(section.contains(",")){
+                        var secs = StringBuffer();
+
+                          section.split(",").forEach((sec){
+                            if(section.split(",").first == sec){
+                              // no thing
+                            }else{
+                              secs.write("$sec|");
+                            }
+                          });
+
+                          String secStr = secs.toString();
+
+                          if (secStr != null && secStr.length > 0) {
+                            secStr = secStr.substring(0, secStr.length - 1);
+                          }
+
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => SectionsScreen(sections:  secStr.toString(),)),
+                        );
+                      }else{
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => PrepareScreen()),
+                        );
+                      }
+                       
+                      },
+                      child: SectionItem(
+                      label:section.contains(",") ? section.split(",").first  : section,
+                    ),
+                  )).toList()
+
+
+         
+
                 ],
               ),
             )
